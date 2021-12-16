@@ -83,6 +83,12 @@
                 <div class="title m-b-md">
                     Hello World !
                 </div>
+                
+                <div>
+                    Hello First Page!
+                </div>
+                <a href="{{ route('sample') }}">新規ページ
+                </a>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>

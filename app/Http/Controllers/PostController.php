@@ -40,7 +40,7 @@ class PostController extends Controller
         $post->save(); // インスタンスをDBにレコードとして保存
 
         //投稿一覧画面にリダイレクトさせる
-        return redirect()->rote('post.index');
+        return redirect()->route('post.index');
 
     }
 

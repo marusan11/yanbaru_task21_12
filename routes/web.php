@@ -19,9 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/','PostController@index
-')->name('post.index
-');
+Route::get('/', 'PostController@index')->name('post.index');
+
 
 //['middleware' => 'auth']でグループ化されたものは「ログインした状態じゃないとアクセスできない」という設定をしています。
 Route::group(['middleware' => 'auth'], function () {

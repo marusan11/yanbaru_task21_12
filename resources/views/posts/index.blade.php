@@ -17,6 +17,8 @@
 					<p class="mb-4">
 						{{ $post->body }}
 					</p>
+					
+					{{-- href属性の部分で詳細表示のルートpost.showを指定しつつ、投稿データのIDをルートパラメータとして渡すようにしています。 --}}
 					<div class="text-right">
 						<a class="btn btn-primary btn-sm" href="{{ route('post.show',['id' => $post->id]) }}">
 							<i class="far fa-show"></i>詳細

@@ -17,7 +17,9 @@
 					<div class="text-right">
 						{{-- @ifディレクブにより編集ボタン、削除ボタンは、投稿のuser_idがログインユーザーと一致する場合（＝自分の投稿の時）にのみ表示するようにしています。 --}}
 						@if ($post->user_id === Auth::id())
-						<a class="btn btn-succes btn-sm" href="#">
+
+						{{-- ルーティングを指定しつつ投稿データのIDをルートパラメータとして渡す --}}
+						<a class="btn btn-succes btn-sm" href="{{ route('post.edit',['id' => $post->id]) }}">
 							<i class="far fa-edit"></i>編集
 						</a>
 						<a class="btn btn-danger btn-sm" rel="nofollow" href="#">

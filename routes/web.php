@@ -19,14 +19,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// ログイン状態じゃなくても見れる状態
+Route::get('/', 'PostController@index')->name('post.index'); // 投稿一覧
 
 
-//['middleware' => 'auth']でグループ化されたものは「ログインした状態じゃないとアクセスできない」という設定をしています。
+// ['middleware' => 'auth']でグループ化されたものは「ログインした状態じゃないとアクセスできない」という設定をしています。
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', 'PostController@index')->name('post.index');
-    Route::get('post/create','PostController@create')->name('post.create');
-    Route::post('post/create','PostController@store')->name('post.store');
+    Route::get('post/create','PostController@create')->name('post.create'); // 投稿画面表示
+    Route::post('post/create','PostController@store')->name('post.store'); // 投稿処理
     //{id}はルートパラメータ(必須パラメータ)
-    //詳細ボタンを押した際にどの投稿を詳細表示するかをコントローラーに渡す必要があるのですが、このように定義することで投稿データのをURLに埋め込んでコントローラーに渡すことができます。
-    Route::get('post/{id}/show','PostController@show')->name('post.show');
+    Route::get('post/{id}/show','PostController@show')->name('post.show'); // 詳細画面表示
+    Route::get('post/{id}/edit','PostController@edit')->name('post.edit'); // 編集画面表示
+    Route::post('post/{id}/update','PostController@update')->name('post.update'); // 編集内容の更新
 });

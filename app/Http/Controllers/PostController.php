@@ -58,6 +58,7 @@ class PostController extends Controller
     public function edit($id)
     {
         // 投稿データのIDでPostモデルから投稿を1件取得
+        
         $post = Post::findOrFail($id);
         
         // 投稿者以外の編集を防ぐ
@@ -69,6 +70,8 @@ class PostController extends Controller
         return view('posts.edit',['post' => $post]);
     }
     
+
+    // 投稿機能で作成したPostRequestというフォームリクエストを利用(バリデーション)
     public function update(PostRequest $request,$id)
     {
         // 投稿データのIDでモデルから投稿を1件取得
@@ -86,6 +89,20 @@ class PostController extends Controller
 
         $post->save(); //DBのレコードを更新
 
+        return redirect()->route('post.index');
+    }
+
+    public function delete($id)
+    {
+        // 投稿データのIDでモデルから投稿を１件取得
+        $post = Post::findOrFail($id);
+
+        // 投稿者以外の削除を防ぐ
+        if($post->user_id !== Auth::id()) {
+            return redirect('/');
+        }
+        $post->delete(); // DBのレコード削除
+        
         return redirect()->route('post.index');
     }
     
